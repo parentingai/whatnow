@@ -349,8 +349,14 @@ body {
   transform: scale(1.2);
 }
 
+.wheel-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
 .try-another-btn {
-  width: 100%;
+  flex: 1;
   padding: 16px;
   border: none;
   border-radius: var(--radius);
@@ -361,11 +367,29 @@ body {
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: transform 0.15s;
-  margin-top: 24px;
 }
 
 .try-another-btn:active {
   transform: scale(0.97);
+}
+
+.new-wheel-btn {
+  flex: 1;
+  padding: 16px;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  background: white;
+  color: var(--primary);
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s;
+  font-family: inherit;
+}
+
+.new-wheel-btn:active {
+  transform: scale(0.97);
+  background: #f4f0ff;
 }
 
 /* ===== SPIN WHEEL SCREEN ===== */

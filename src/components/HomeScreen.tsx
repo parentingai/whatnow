@@ -1,4 +1,6 @@
+import { useEffect, useRef } from 'react';
 import type { TimeFilter, LocationFilter, EnergyFilter } from '../data/activities';
+import { trackEmptyPoolHit } from '../lib/analytics';
 
 interface Props {
   onSpin: (time: TimeFilter, location: LocationFilter, energy: EnergyFilter) => void;
@@ -16,6 +18,17 @@ interface Props {
 export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, time, location, energy, onTimeChange, onLocationChange, onEnergyChange }: Props) {
   const toggle = <T,>(current: T, value: T): T =>
     current === value ? (null as T) : value;
+
+  // Fire empty_pool_hit once per entry into the empty state (not on every
+  // rerender). `wasEmptyRef` tracks the previous value so we only emit on the
+  // false→true transition.
+  const wasEmptyRef = useRef(false);
+  useEffect(() => {
+    if (spinPoolEmpty && !wasEmptyRef.current) {
+      trackEmptyPoolHit();
+    }
+    wasEmptyRef.current = spinPoolEmpty;
+  }, [spinPoolEmpty]);
 
   return (
     <div className="home-screen">

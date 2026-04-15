@@ -6,6 +6,8 @@ const HINT_KEY = 'whatnow-wheel-hinted';
 interface Props {
   activities: Activity[];
   onBack: () => void;
+  onNewWheel: () => void;
+  onLand: (id: number) => void;
 }
 
 const MAX_SEGMENTS = 10;
@@ -23,7 +25,7 @@ function describeArc(cx: number, cy: number, r: number, startAngle: number, endA
   return `M ${cx} ${cy} L ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 0 ${end.x} ${end.y} Z`;
 }
 
-export function ActivitySpinner({ activities, onBack }: Props) {
+export function ActivitySpinner({ activities, onBack, onNewWheel, onLand }: Props) {
   const [spinning, setSpinning] = useState(false);
   const [landed, setLanded] = useState(false);
   const [rotation, setRotation] = useState(0);
@@ -66,6 +68,7 @@ export function ActivitySpinner({ activities, onBack }: Props) {
       setSpinning(false);
       setLanded(true);
       setWinnerIndex(landedIndex);
+      onLand(wheelActivities[landedIndex].id);
     }, 3500);
   };
 
@@ -177,9 +180,16 @@ export function ActivitySpinner({ activities, onBack }: Props) {
               <span className="tag">{winner.energy === 'chill' ? '😌' : '🏃'} {winner.energy}</span>
             </div>
           </div>
-          <button className="try-another-btn" onClick={handleSpinAgain}>
-            🔁 Spin again
-          </button>
+          <div className="wheel-actions">
+            <button className="try-another-btn" onClick={handleSpinAgain}>
+              🔁 Spin again
+            </button>
+            {activities.length > wheelActivities.length && (
+              <button className="new-wheel-btn" onClick={onNewWheel}>
+                🔀 New wheel
+              </button>
+            )}
+          </div>
         </div>
       )}
 
