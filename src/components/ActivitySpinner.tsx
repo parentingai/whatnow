@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import type { Activity } from '../data/activities';
 
 const HINT_KEY = 'whatnow-wheel-hinted';
@@ -30,7 +30,12 @@ export function ActivitySpinner({ activities, onBack, onNewWheel, onLand }: Prop
   const [landed, setLanded] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [winnerIndex, setWinnerIndex] = useState<number | null>(null);
-  const [showHint, setShowHint] = useState(() => {
+  // Always shown on entry (session-only) — every user gets the cue the first
+  // time they reach the spin screen each session. Cleared on first tap.
+  const [showEntryHint, setShowEntryHint] = useState(true);
+  // Shown after landing, but only until the user has tapped once ever
+  // (persisted to localStorage so it doesn't nag on every visit).
+  const [showRepeatHint, setShowRepeatHint] = useState(() => {
     try { return localStorage.getItem(HINT_KEY) !== '1'; } catch { return true; }
   });
 
@@ -72,27 +77,23 @@ export function ActivitySpinner({ activities, onBack, onNewWheel, onLand }: Prop
     }, 3500);
   };
 
-  // Auto-spin on mount
-  useEffect(() => {
-    const timer = setTimeout(spin, 400);
-    return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const winner = winnerIndex !== null ? wheelActivities[winnerIndex] : null;
 
-  // Spin-again action shared by the tappable wheel and the "Spin again" button.
-  // Calls spin() directly so the wheel keeps its current rotation and starts
-  // moving immediately — no remount jump, no 400ms delay.
-  const wheelTappable = landed && !spinning;
+  // Wheel is tappable whenever it isn't mid-spin — both for the very first
+  // spin (before any landing) and for re-spinning after a result. Calling
+  // spin() directly keeps rotation continuous — no remount jump, no delay.
+  const wheelTappable = !spinning;
   const handleSpinAgain = () => {
     if (spinning) return;
-    if (showHint) {
+    setShowEntryHint(false);
+    if (showRepeatHint) {
       try { localStorage.setItem(HINT_KEY, '1'); } catch { /* empty */ }
-      setShowHint(false);
+      setShowRepeatHint(false);
     }
     spin();
   };
+
+  const hintVisible = wheelTappable && (showEntryHint || (landed && showRepeatHint));
 
   return (
     <div className="spinner-screen">
@@ -156,10 +157,10 @@ export function ActivitySpinner({ activities, onBack, onNewWheel, onLand }: Prop
         </svg>
       </div>
 
-      {wheelTappable && showHint && (
+      {hintVisible && (
         <div className="wheel-tap-hint">
           <span className="wheel-tap-hint-arrow">👆</span>
-          <span>Tap the wheel to spin again!</span>
+          <span>Tap the wheel to spin{landed ? ' again' : ''}!</span>
         </div>
       )}
 
@@ -193,11 +194,6 @@ export function ActivitySpinner({ activities, onBack, onNewWheel, onLand }: Prop
         </div>
       )}
 
-      {!landed && !spinning && (
-        <button className="spin-cta" onClick={spin}>
-          Tap to spin!
-        </button>
-      )}
     </div>
   );
 }

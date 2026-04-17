@@ -47,10 +47,15 @@ function App() {
 
   // Build the candidate pool for a fresh wheel. Drops recently-seen winners
   // when the remaining set is large enough; otherwise falls back to the full
-  // pool so we never starve the wheel below its minimum.
+  // pool so we never starve the wheel below its minimum. When the base pool
+  // is already small (≤ 8), skip the recent filter entirely — dropping
+  // RECENT_SIZE items from a small pool makes the "Customize count" and the
+  // on-wheel count visibly diverge, which confuses users more than occasional
+  // repeats help.
   const buildPool = useCallback(
     (t: TimeFilter, l: LocationFilter, e: EnergyFilter): Activity[] => {
       const base = getFilteredActivities(t, l, e).filter((a) => !excluded.has(a.id));
+      if (base.length <= 8) return base;
       const withoutRecent = base.filter((a) => !recentRef.current.includes(a.id));
       return withoutRecent.length >= 2 ? withoutRecent : base;
     },

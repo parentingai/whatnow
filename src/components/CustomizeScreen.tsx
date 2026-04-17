@@ -50,7 +50,7 @@ export function CustomizeScreen({ isExcluded, toggle, selectAll, deselectAll, on
           <div className="filter-options">
             <button className={`filter-btn ${time === '10min' ? 'active' : ''}`} onClick={() => onTimeChange(toggleFilter(time, '10min'))}>10 min</button>
             <button className={`filter-btn ${time === '30min' ? 'active' : ''}`} onClick={() => onTimeChange(toggleFilter(time, '30min'))}>30 min</button>
-            <button className={`filter-btn ${time === 'longer' ? 'active' : ''}`} onClick={() => onTimeChange(toggleFilter(time, 'longer'))}>Longer</button>
+            <button className={`filter-btn ${time === 'longer' ? 'active' : ''}`} onClick={() => onTimeChange(toggleFilter(time, 'longer'))}>1 hr+</button>
           </div>
         </div>
 

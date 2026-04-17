@@ -35,6 +35,8 @@ body {
   overflow-x: hidden;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===== Back Button ===== */
@@ -50,10 +52,10 @@ body {
 
 /* ===== HOME SCREEN ===== */
 .home-screen {
-  padding: 0 20px calc(32px + env(safe-area-inset-bottom));
+  padding: 0 20px 32px;
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
+  flex: 1;
 }
 
 .hero-section {
@@ -230,8 +232,8 @@ body {
 
 /* ===== RESULT SCREEN ===== */
 .result-screen {
-  padding: 0 20px calc(32px + env(safe-area-inset-bottom));
-  min-height: 100dvh;
+  padding: 0 20px 32px;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -394,8 +396,8 @@ body {
 
 /* ===== SPIN WHEEL SCREEN ===== */
 .spinner-screen {
-  padding: 0 20px calc(32px + env(safe-area-inset-bottom));
-  min-height: 100dvh;
+  padding: 0 20px 32px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -423,11 +425,11 @@ body {
 }
 
 .wheel-tap-hint {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
-  margin: 14px auto 0;
   padding: 10px 18px;
+  margin-top: 24px;
   background: linear-gradient(135deg, var(--primary), #a855f7);
   color: white;
   font-size: 15px;
@@ -435,9 +437,6 @@ body {
   border-radius: 24px;
   box-shadow: var(--shadow);
   animation: tapPulse 1.2s ease-in-out infinite;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .wheel-tap-hint-arrow {
@@ -447,8 +446,8 @@ body {
 }
 
 @keyframes tapPulse {
-  0%, 100% { box-shadow: 0 2px 16px rgba(108, 92, 231, 0.25); transform: translateX(-50%) scale(1); }
-  50% { box-shadow: 0 4px 24px rgba(108, 92, 231, 0.55); transform: translateX(-50%) scale(1.04); }
+  0%, 100% { box-shadow: 0 2px 16px rgba(108, 92, 231, 0.25); transform: scale(1); }
+  50% { box-shadow: 0 4px 24px rgba(108, 92, 231, 0.55); transform: scale(1.04); }
 }
 
 @keyframes tapArrowBounce {
@@ -500,23 +499,10 @@ body {
   100% { transform: scale(1); }
 }
 
-.spin-cta {
-  margin-top: 24px;
-  padding: 14px 40px;
-  border: none;
-  border-radius: var(--radius);
-  background: linear-gradient(135deg, var(--primary), #a855f7);
-  color: white;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-}
-
 /* ===== CUSTOMIZE / PICK SCREEN ===== */
 .customize-screen {
-  padding: 0 20px calc(32px + env(safe-area-inset-bottom));
-  min-height: 100dvh;
+  padding: 0 20px 32px;
+  flex: 1;
 }
 
 .customize-hint {

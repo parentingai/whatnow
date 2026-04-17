@@ -67,7 +67,7 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
             <button
               className={`filter-btn ${time === 'longer' ? 'active' : ''}`}
               onClick={() => onTimeChange(toggle(time, 'longer'))}
-            >Longer</button>
+            >1 hr+</button>
           </div>
         </div>
 
