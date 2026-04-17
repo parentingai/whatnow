@@ -28,6 +28,7 @@ dist-ssr
 
 # iOS / Xcode
 ios/App/build/
+ios/App/build-sim/
 ios/App/App/public/
 ios/build/
 ios/DerivedData/

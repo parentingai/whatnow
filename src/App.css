@@ -501,6 +501,34 @@ body {
   100% { transform: scale(1); }
 }
 
+/* Short-viewport adjustments (iPhone SE, older small phones).
+   Landed state is ~75px over budget at 667px height; shrink the wheel
+   and tighten the result card so Spin again stays above the fold. */
+@media (max-height: 700px) {
+  .wheel-wrapper {
+    max-width: 240px;
+    padding-top: 12px;
+  }
+  .wheel-tap-hint {
+    margin-top: 16px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  .wheel-result-card {
+    padding: 16px 16px;
+  }
+  .result-emoji {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  .result-text {
+    font-size: 18px;
+  }
+  .wheel-actions {
+    margin-top: 16px;
+  }
+}
+
 /* ===== CUSTOMIZE / PICK SCREEN ===== */
 .customize-screen {
   padding: 0 20px 32px;
