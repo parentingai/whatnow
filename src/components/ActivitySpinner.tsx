@@ -164,7 +164,7 @@ export function ActivitySpinner({ activities, onBack, onNewWheel, onLand }: Prop
         </div>
       )}
 
-      {activities.length > wheelActivities.length && (
+      {!landed && activities.length > wheelActivities.length && (
         <p className="wheel-pool-hint">
           Showing {wheelActivities.length} of {activities.length}
         </p>
