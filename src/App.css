@@ -30,7 +30,7 @@ body {
 .app {
   max-width: 430px;
   margin: 0 auto;
-  min-height: 100dvh;
+  height: 100dvh;
   position: relative;
   overflow-x: hidden;
   padding-top: env(safe-area-inset-top);
@@ -56,6 +56,8 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .hero-section {
@@ -129,9 +131,7 @@ body {
 }
 
 .no-results[data-empty="false"] {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
+  display: none;
 }
 
 .no-results[data-empty="true"] {
@@ -209,12 +209,12 @@ body {
   flex-direction: column;
   gap: 10px;
   margin-top: auto;
-  padding-top: 28px;
+  padding-top: 16px;
 }
 
 .secondary-btn {
   flex: 1;
-  padding: 14px;
+  padding: 16px;
   border: 2px solid #e2e2e2;
   border-radius: var(--radius-sm);
   background: white;

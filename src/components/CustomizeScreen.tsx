@@ -1,5 +1,5 @@
 import { activities } from '../data/activities';
-import type { TimeFilter, LocationFilter, EnergyFilter } from '../data/activities';
+import type { TimeFilter, LocationFilter, EnergyFilter, VenueFilter } from '../data/activities';
 
 interface Props {
   isExcluded: (id: number) => boolean;
@@ -10,14 +10,16 @@ interface Props {
   time: TimeFilter;
   location: LocationFilter;
   energy: EnergyFilter;
+  venue: VenueFilter;
   onTimeChange: (v: TimeFilter) => void;
   onLocationChange: (v: LocationFilter) => void;
   onEnergyChange: (v: EnergyFilter) => void;
+  onVenueChange: (v: VenueFilter) => void;
 }
 
 const MIN_WHEEL = 2;
 
-export function CustomizeScreen({ isExcluded, toggle, selectAll, deselectAll, onBack, time, location, energy, onTimeChange, onLocationChange, onEnergyChange }: Props) {
+export function CustomizeScreen({ isExcluded, toggle, selectAll, deselectAll, onBack, time, location, energy, venue, onTimeChange, onLocationChange, onEnergyChange, onVenueChange }: Props) {
   const toggleFilter = <T,>(current: T, value: T): T =>
     current === value ? (null as T) : value;
 
@@ -25,6 +27,8 @@ export function CustomizeScreen({ isExcluded, toggle, selectAll, deselectAll, on
     if (time && a.time !== time) return false;
     if (location && a.location !== location) return false;
     if (energy && a.energy !== energy) return false;
+    // 'anywhere' activities show up regardless of the specific venue picked.
+    if (venue && a.venue !== venue && a.venue !== 'anywhere') return false;
     return true;
   });
 
@@ -61,6 +65,17 @@ export function CustomizeScreen({ isExcluded, toggle, selectAll, deselectAll, on
             <button className={`filter-btn ${location === 'outdoor' ? 'active' : ''}`} onClick={() => onLocationChange(toggleFilter(location, 'outdoor'))}>🌳 Outdoor</button>
           </div>
         </div>
+
+        {location === 'outdoor' && (
+          <div className="filter-group">
+            <span className="filter-label">🏡 Where exactly?</span>
+            <div className="filter-options">
+              <button className={`filter-btn ${venue === 'backyard' ? 'active' : ''}`} onClick={() => onVenueChange(toggleFilter(venue, 'backyard'))}>🏡 Backyard</button>
+              <button className={`filter-btn ${venue === 'park' ? 'active' : ''}`} onClick={() => onVenueChange(toggleFilter(venue, 'park'))}>🛝 Park</button>
+              <button className={`filter-btn ${venue === 'neighborhood' ? 'active' : ''}`} onClick={() => onVenueChange(toggleFilter(venue, 'neighborhood'))}>🚶 Walk</button>
+            </div>
+          </div>
+        )}
 
         <div className="filter-group">
           <span className="filter-label">⚡ Energy</span>

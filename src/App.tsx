@@ -142,9 +142,11 @@ function App() {
           time={time}
           location={location}
           energy={energy}
+          venue={venue}
           onTimeChange={setTime}
           onLocationChange={setLocation}
           onEnergyChange={setEnergy}
+          onVenueChange={setVenue}
         />
       )}
     </div>
