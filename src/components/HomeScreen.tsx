@@ -102,7 +102,7 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
               <button
                 className={`filter-btn ${venue === 'neighborhood' ? 'active' : ''}`}
                 onClick={() => onVenueChange(toggle(venue, 'neighborhood'))}
-              >🚶 Walk</button>
+              >🚶 Neighborhood</button>
             </div>
           </div>
         )}

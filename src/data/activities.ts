@@ -32,14 +32,14 @@ export const activities: Activity[] = [
   { id: 16, emoji: "👑", label: "Paper Crown", text: "Make a crown out of paper and decorate it", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
   { id: 17, emoji: "🗺️", label: "Treasure Map", text: "Draw a map of an imaginary treasure island", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
   { id: 18, emoji: "📦", label: "Box Build", text: "Make a cardboard box car, spaceship, or house", category: 'indoor-creative', time: 'longer', location: 'indoor', energy: 'chill' },
-  { id: 19, emoji: "🎨", label: "Finger Paint", text: "Finger paint a picture using only 3 colors", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
+  { id: 19, emoji: "👆", label: "Finger Paint", text: "Finger paint a picture using only 3 colors", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
   { id: 20, emoji: "🎢", label: "Marble Run", text: "Build a marble run with toilet paper rolls", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
   { id: 21, emoji: "📿", label: "Bracelets", text: "Make friendship bracelets from string or yarn", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
   { id: 22, emoji: "🧦", label: "Puppet Show", text: "Create a puppet show with socks", category: 'indoor-creative', time: 'longer', location: 'indoor', energy: 'chill' },
   { id: 23, emoji: "🪨", label: "Rock Art", text: "Decorate rocks with markers or paint", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
   { id: 24, emoji: "✂️", label: "Collage", text: "Make a collage from old magazines", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
   { id: 25, emoji: "🎲", label: "Board Game", text: "Design your own board game on paper", category: 'indoor-creative', time: 'longer', location: 'indoor', energy: 'chill' },
-  { id: 26, emoji: "📦", label: "Box Fort", text: "Build a fort out of cardboard boxes", category: 'indoor-creative', time: 'longer', location: 'indoor', energy: 'active' },
+  { id: 26, emoji: "🛖", label: "Box Fort", text: "Build a fort out of cardboard boxes", category: 'indoor-creative', time: 'longer', location: 'indoor', energy: 'active' },
   { id: 27, emoji: "🎭", label: "Mask Make", text: "Make a mask from a paper plate", category: 'indoor-creative', time: '10min', location: 'indoor', energy: 'chill' },
   { id: 28, emoji: "🌧️", label: "Rain Stick", text: "Create a rain stick from a paper towel roll and rice", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
 
@@ -52,7 +52,7 @@ export const activities: Activity[] = [
   { id: 34, emoji: "👀", label: "I Spy Walk", text: "Play 'I Spy' on a walk around the block", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'active', venue: 'neighborhood' },
   { id: 35, emoji: "🚧", label: "Obstacle Run", text: "Set up an obstacle course in the yard", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'active', venue: 'backyard' },
   { id: 36, emoji: "🫧", label: "Bubbles!", text: "Blow bubbles and try to catch them", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'active', venue: 'anywhere' },
-  { id: 37, emoji: "🪨", label: "Rock Tower", text: "Collect rocks and build a rock tower", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'anywhere' },
+  { id: 37, emoji: "🧱", label: "Rock Tower", text: "Collect rocks and build a rock tower", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'anywhere' },
   { id: 38, emoji: "🥶", label: "Freeze Tag", text: "Play freeze tag", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'active', venue: 'anywhere' },
   { id: 39, emoji: "🔍", label: "Scavenger", text: "Go on a nature scavenger hunt", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'active', venue: 'anywhere' },
   { id: 40, emoji: "💦", label: "Puddles!", text: "Jump in puddles (if it rained!)", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'active', venue: 'anywhere' },
@@ -79,10 +79,10 @@ export const activities: Activity[] = [
   { id: 59, emoji: "🔤", label: "Clay Letters", text: "Build letters of the alphabet out of playdough", category: 'educational', time: '30min', location: 'indoor', energy: 'chill' },
   { id: 60, emoji: "🐦", label: "Bird Feeder", text: "Make a bird feeder from a pinecone and peanut butter", category: 'educational', time: '30min', location: 'outdoor', energy: 'chill', venue: 'backyard' },
   { id: 61, emoji: "🌱", label: "Plant Seed", text: "Plant a seed in a cup and watch it grow", category: 'educational', time: '10min', location: 'indoor', energy: 'chill' },
-  { id: 62, emoji: "🗺️", label: "Find Home", text: "Look at a map and find where you live", category: 'educational', time: '10min', location: 'indoor', energy: 'chill' },
+  { id: 62, emoji: "🧭", label: "Find Home", text: "Look at a map and find where you live", category: 'educational', time: '10min', location: 'indoor', energy: 'chill' },
 
   // Quick
-  { id: 63, emoji: "🤸", label: "Mini Workout", text: "Do 10 jumping jacks, 10 squats, 10 spins", category: 'quick', time: '10min', location: 'indoor', energy: 'active' },
+  { id: 63, emoji: "💪", label: "Mini Workout", text: "Do 10 jumping jacks, 10 squats, 10 spins", category: 'quick', time: '10min', location: 'indoor', energy: 'active' },
   { id: 64, emoji: "✊", label: "Rock Paper", text: "Play rock-paper-scissors best of 10", category: 'quick', time: '10min', location: 'indoor', energy: 'chill' },
   { id: 65, emoji: "🤪", label: "Funny Faces", text: "Make funny faces in the mirror together", category: 'quick', time: '10min', location: 'indoor', energy: 'chill' },
   { id: 66, emoji: "🦩", label: "Balance!", text: "Do a 1-minute balance challenge — stand on one foot!", category: 'quick', time: '10min', location: 'indoor', energy: 'active' },
@@ -125,7 +125,7 @@ export const activities: Activity[] = [
 
   // More creative
   { id: 97, emoji: "🖼️", label: "Portraits", text: "Draw portraits of each other with crayons", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
-  { id: 98, emoji: "📦", label: "Time Capsule", text: "Make a time capsule in a shoebox", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
+  { id: 98, emoji: "⏳", label: "Time Capsule", text: "Make a time capsule in a shoebox", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
   { id: 99, emoji: "⭐", label: "DIY Stickers", text: "Create your own stickers with paper and tape", category: 'indoor-creative', time: '30min', location: 'indoor', energy: 'chill' },
   { id: 100, emoji: "🦄", label: "Invent Animal", text: "Invent a new animal — draw it and name it", category: 'indoor-creative', time: '10min', location: 'indoor', energy: 'chill' },
 
@@ -135,7 +135,7 @@ export const activities: Activity[] = [
   { id: 103, emoji: "🏁", label: "Big Obstacle", text: "Build a big obstacle course in the yard and time each run", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'active', venue: 'backyard' },
   { id: 104, emoji: "🚲", label: "Bike Explore", text: "Go on a bike adventure to somewhere you've never been", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'active', venue: 'neighborhood' },
   { id: 105, emoji: "🚩", label: "Capture Flag", text: "Play capture the flag with neighborhood kids", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'active', venue: 'neighborhood' },
-  { id: 106, emoji: "🛝", label: "Park Play", text: "Go to the park and play on every piece of equipment", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'active', venue: 'park' },
+  { id: 106, emoji: "🎡", label: "Park Play", text: "Go to the park and play on every piece of equipment", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'active', venue: 'park' },
   { id: 107, emoji: "🎈", label: "Water Fight", text: "Set up a water balloon battle", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'active', venue: 'backyard' },
   { id: 108, emoji: "⚽", label: "Kickball", text: "Play soccer or kickball in the yard", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'active', venue: 'backyard' },
 
@@ -150,7 +150,7 @@ export const activities: Activity[] = [
   // More longer activities
   { id: 113, emoji: "🎭", label: "Play Time", text: "Write and perform a short play together", category: 'indoor-creative', time: 'longer', location: 'indoor', energy: 'active' },
   { id: 114, emoji: "🧪", label: "Science Lab", text: "Do 3 kitchen science experiments (vinegar volcano, slime, etc.)", category: 'educational', time: 'longer', location: 'indoor', energy: 'chill' },
-  { id: 115, emoji: "🗺️", label: "Treasure Hunt", text: "Set up a treasure hunt with clues around the house", category: 'indoor-low', time: 'longer', location: 'indoor', energy: 'active' },
+  { id: 115, emoji: "🗝️", label: "Treasure Hunt", text: "Set up a treasure hunt with clues around the house", category: 'indoor-low', time: 'longer', location: 'indoor', energy: 'active' },
   { id: 116, emoji: "🎬", label: "Movie Make", text: "Film a short movie or stop-motion animation together", category: 'indoor-creative', time: 'longer', location: 'indoor', energy: 'chill' },
   { id: 117, emoji: "🏰", label: "Blanket City", text: "Build a whole blanket city with multiple rooms and tunnels", category: 'indoor-low', time: 'longer', location: 'indoor', energy: 'chill' },
   { id: 118, emoji: "👩‍🍳", label: "Chef Time", text: "Let your kid pick a recipe and cook a meal together", category: 'educational', time: 'longer', location: 'indoor', energy: 'chill' },
@@ -158,8 +158,8 @@ export const activities: Activity[] = [
   { id: 120, emoji: "🧶", label: "Craft Day", text: "Pick a big craft project — friendship bracelets, origami, or tie-dye", category: 'indoor-creative', time: 'longer', location: 'indoor', energy: 'chill' },
   { id: 121, emoji: "🌻", label: "Garden Time", text: "Plant seeds in pots or a garden bed and decorate markers", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'chill', venue: 'backyard' },
   { id: 122, emoji: "🏕️", label: "Camp Out", text: "Set up a tent in the backyard and pretend to camp", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'chill', venue: 'backyard' },
-  { id: 123, emoji: "🎨", label: "Chalk Mural", text: "Cover the driveway in a giant chalk mural", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'chill', venue: 'backyard' },
-  { id: 124, emoji: "🐛", label: "Bug Safari", text: "Go on a bug safari — find, observe, and draw insects", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'chill', venue: 'park' },
+  { id: 123, emoji: "🖌️", label: "Chalk Mural", text: "Cover the driveway in a giant chalk mural", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'chill', venue: 'backyard' },
+  { id: 124, emoji: "🐞", label: "Bug Safari", text: "Go on a bug safari — find, observe, and draw insects", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'chill', venue: 'park' },
   { id: 125, emoji: "🏗️", label: "Sand Build", text: "Build an epic sandcastle or dirt construction site", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'active', venue: 'backyard' },
   { id: 126, emoji: "🛹", label: "Skate Learn", text: "Practice skateboarding, scootering, or rollerblading", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'active', venue: 'neighborhood' },
   { id: 127, emoji: "🤸", label: "Gymnastics", text: "Practice cartwheels, handstands, and tumbling on the grass", category: 'outdoor', time: 'longer', location: 'outdoor', energy: 'active', venue: 'park' },
@@ -198,7 +198,7 @@ export const activities: Activity[] = [
   { id: 150, emoji: "🍂", label: "Leaf Pile Jump", text: "Rake up a pile of leaves and jump in over and over", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'active', venue: 'park' },
   { id: 151, emoji: "🪵", label: "Stick Sculptures", text: "Collect sticks and build an animal or house on the ground", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'park' },
   { id: 152, emoji: "🌰", label: "Pinecone Hunt", text: "Find as many pinecones as you can and build a pile — who found the biggest?", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'park' },
-  { id: 153, emoji: "🤸", label: "Playground Olympics", text: "Invent 5 events using the playground — fastest slide, most swings in 30 sec, etc.", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'active', venue: 'park' },
+  { id: 153, emoji: "🏆", label: "Playground Olympics", text: "Invent 5 events using the playground — fastest slide, most swings in 30 sec, etc.", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'active', venue: 'park' },
   { id: 154, emoji: "🦆", label: "Feed the Ducks", text: "Bring some seed and find a pond or stream to feed the ducks or birds", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'park' },
   { id: 155, emoji: "🌿", label: "Smell Walk", text: "Find 5 things with a smell — flowers, grass, bark, mud, leaves", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'park' },
   { id: 156, emoji: "☀️", label: "Sundial", text: "Make a sundial with a stick in the ground — mark the shadow and come back in 30 min", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'park' },
@@ -206,7 +206,7 @@ export const activities: Activity[] = [
   // Backyard
   { id: 157, emoji: "💧", label: "Water Relay", text: "Fill a cup at the hose and race to pour it into a bucket without spilling — first to fill wins", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'active', venue: 'backyard' },
   { id: 158, emoji: "🪣", label: "Car Wash", text: "Wash bikes, scooters, or outdoor toys with a bucket and sponge", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'active', venue: 'backyard' },
-  { id: 159, emoji: "🐛", label: "Worm Hunt", text: "Dig in the soil after rain and see how many worms you can find — then put them back!", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'backyard' },
+  { id: 159, emoji: "🪱", label: "Worm Hunt", text: "Dig in the soil after rain and see how many worms you can find — then put them back!", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'backyard' },
   { id: 160, emoji: "🎯", label: "Target Practice", text: "Hang a hula hoop or draw a circle, throw balls or beanbags through it", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'active', venue: 'backyard' },
   { id: 161, emoji: "🌻", label: "Grow Something", text: "Plant a seed in a pot on the porch — water it and check on it every day", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'backyard' },
   { id: 162, emoji: "🧴", label: "Giant Bubbles", text: "Make giant bubble wand from wire and mix dish soap + water + a little glycerin", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'backyard' },
@@ -217,17 +217,17 @@ export const activities: Activity[] = [
 
   // Neighborhood
   { id: 167, emoji: "🐕", label: "Dog Count", text: "Go for a walk and count how many dogs you see — bonus point for each you can pet", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'neighborhood' },
-  { id: 168, emoji: "🔡", label: "Alphabet Walk", text: "Find something that starts with every letter of the alphabet on your walk", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'neighborhood' },
-  { id: 169, emoji: "🎨", label: "Sidewalk Gallery", text: "Chalk a whole sidewalk square gallery — each person draws 3 things", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'neighborhood' },
-  { id: 170, emoji: "🏠", label: "House Bingo", text: "Make a list of things to spot — red door, garden gnome, mailbox flag, basketball hoop", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'neighborhood' },
+  { id: 168, emoji: "🅰️", label: "Alphabet Walk", text: "Find something that starts with every letter of the alphabet on your walk", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'neighborhood' },
+  { id: 169, emoji: "🛣️", label: "Sidewalk Gallery", text: "Chalk a whole sidewalk square gallery — each person draws 3 things", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'neighborhood' },
+  { id: 170, emoji: "📋", label: "House Bingo", text: "Make a list of things to spot — red door, garden gnome, mailbox flag, basketball hoop", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'neighborhood' },
   { id: 171, emoji: "🛴", label: "Scooter Slalom", text: "Set up cones or chalk marks on the driveway and race around them on scooters or bikes", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'active', venue: 'neighborhood' },
-  { id: 172, emoji: "🪨", label: "Lucky Rock", text: "Find the most interesting rock on your walk, paint it at home, and hide it for someone to find", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'neighborhood' },
+  { id: 172, emoji: "💎", label: "Lucky Rock", text: "Find the most interesting rock on your walk, paint it at home, and hide it for someone to find", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'neighborhood' },
   { id: 173, emoji: "🚶", label: "Backwards Walk", text: "Walk around the block backwards — see if you can make it without peeking!", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'active', venue: 'neighborhood' },
   { id: 174, emoji: "🌈", label: "Rainbow Hunt", text: "Walk until you've found something in every color of the rainbow", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'neighborhood' },
 
   // Anywhere (outdoor)
   { id: 175, emoji: "👣", label: "Shadow Tag", text: "Tag each other's shadows by stepping on them — no body contact!", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'active', venue: 'anywhere' },
-  { id: 176, emoji: "🏠", label: "Fairy House", text: "Build a tiny fairy house from sticks, leaves, moss, and acorns", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'anywhere' },
+  { id: 176, emoji: "🧚", label: "Fairy House", text: "Build a tiny fairy house from sticks, leaves, moss, and acorns", category: 'outdoor', time: '30min', location: 'outdoor', energy: 'chill', venue: 'anywhere' },
   { id: 177, emoji: "🎵", label: "Bird Calls", text: "Listen for a bird, then try to copy its call — see if it calls back!", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'anywhere' },
   { id: 178, emoji: "🔭", label: "Micro Explorer", text: "Get very close to the ground and see what tiny things live down there — ants, seeds, moss", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'anywhere' },
   { id: 179, emoji: "🧘", label: "Outdoor Yoga", text: "Do 5 yoga poses outside — tree pose is better when you're near actual trees!", category: 'outdoor', time: '10min', location: 'outdoor', energy: 'chill', venue: 'anywhere' },

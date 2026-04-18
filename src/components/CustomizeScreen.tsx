@@ -72,7 +72,7 @@ export function CustomizeScreen({ isExcluded, toggle, selectAll, deselectAll, on
             <div className="filter-options">
               <button className={`filter-btn ${venue === 'backyard' ? 'active' : ''}`} onClick={() => onVenueChange(toggleFilter(venue, 'backyard'))}>🏡 Backyard</button>
               <button className={`filter-btn ${venue === 'park' ? 'active' : ''}`} onClick={() => onVenueChange(toggleFilter(venue, 'park'))}>🛝 Park</button>
-              <button className={`filter-btn ${venue === 'neighborhood' ? 'active' : ''}`} onClick={() => onVenueChange(toggleFilter(venue, 'neighborhood'))}>🚶 Walk</button>
+              <button className={`filter-btn ${venue === 'neighborhood' ? 'active' : ''}`} onClick={() => onVenueChange(toggleFilter(venue, 'neighborhood'))}>🚶 Neighborhood</button>
             </div>
           </div>
         )}
