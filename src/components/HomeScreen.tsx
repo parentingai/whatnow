@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import type { TimeFilter, LocationFilter, EnergyFilter } from '../data/activities';
+import type { TimeFilter, LocationFilter, EnergyFilter, VenueFilter } from '../data/activities';
 import { trackEmptyPoolHit } from '../lib/analytics';
 
 interface Props {
@@ -10,12 +10,14 @@ interface Props {
   time: TimeFilter;
   location: LocationFilter;
   energy: EnergyFilter;
+  venue: VenueFilter;
   onTimeChange: (v: TimeFilter) => void;
   onLocationChange: (v: LocationFilter) => void;
   onEnergyChange: (v: EnergyFilter) => void;
+  onVenueChange: (v: VenueFilter) => void;
 }
 
-export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, time, location, energy, onTimeChange, onLocationChange, onEnergyChange }: Props) {
+export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, time, location, energy, venue, onTimeChange, onLocationChange, onEnergyChange, onVenueChange }: Props) {
   const toggle = <T,>(current: T, value: T): T =>
     current === value ? (null as T) : value;
 
@@ -84,6 +86,26 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
             >🌳 Outdoor</button>
           </div>
         </div>
+
+        {location === 'outdoor' && (
+          <div className="filter-group">
+            <span className="filter-label">🏡 Where exactly?</span>
+            <div className="filter-options">
+              <button
+                className={`filter-btn ${venue === 'backyard' ? 'active' : ''}`}
+                onClick={() => onVenueChange(toggle(venue, 'backyard'))}
+              >🏡 Backyard</button>
+              <button
+                className={`filter-btn ${venue === 'park' ? 'active' : ''}`}
+                onClick={() => onVenueChange(toggle(venue, 'park'))}
+              >🛝 Park</button>
+              <button
+                className={`filter-btn ${venue === 'neighborhood' ? 'active' : ''}`}
+                onClick={() => onVenueChange(toggle(venue, 'neighborhood'))}
+              >🚶 Neighborhood</button>
+            </div>
+          </div>
+        )}
 
         <div className="filter-group">
           <span className="filter-label">⚡ Energy</span>

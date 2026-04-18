@@ -4,7 +4,7 @@ import { ActivitySpinner } from './components/ActivitySpinner';
 import { CustomizeScreen } from './components/CustomizeScreen';
 import { useExcluded } from './hooks/useCustomActivities';
 import { getFilteredActivities } from './data/activities';
-import type { Activity, TimeFilter, LocationFilter, EnergyFilter } from './data/activities';
+import type { Activity, TimeFilter, LocationFilter, EnergyFilter, VenueFilter } from './data/activities';
 import {
   initAnalytics,
   trackAppOpened,
@@ -25,6 +25,7 @@ function App() {
   const [time, setTime] = useState<TimeFilter>(null);
   const [location, setLocation] = useState<LocationFilter>(null);
   const [energy, setEnergy] = useState<EnergyFilter>(null);
+  const [venue, setVenue] = useState<VenueFilter>(null);
   const { excluded, toggle, selectAll, deselectAll, isExcluded } = useExcluded();
   // Ref — doesn't trigger re-renders and doesn't need to survive app relaunch.
   const recentRef = useRef<number[]>([]);
@@ -41,7 +42,11 @@ function App() {
     trackAppOpened();
   }, []);
 
-  const filteredAll = getFilteredActivities(time, location, energy);
+  useEffect(() => {
+    if (location !== 'outdoor') setVenue(null);
+  }, [location]);
+
+  const filteredAll = getFilteredActivities(time, location, energy, venue);
   const filteredHidden = filteredAll.filter((a) => excluded.has(a.id)).length;
   const spinPoolSize = filteredAll.length - filteredHidden;
 
@@ -54,12 +59,12 @@ function App() {
   // repeats help.
   const buildPool = useCallback(
     (t: TimeFilter, l: LocationFilter, e: EnergyFilter): Activity[] => {
-      const base = getFilteredActivities(t, l, e).filter((a) => !excluded.has(a.id));
+      const base = getFilteredActivities(t, l, e, venue).filter((a) => !excluded.has(a.id));
       if (base.length <= 8) return base;
       const withoutRecent = base.filter((a) => !recentRef.current.includes(a.id));
       return withoutRecent.length >= 2 ? withoutRecent : base;
     },
-    [excluded]
+    [excluded, venue]
   );
 
   const startSpin = useCallback(
@@ -109,9 +114,11 @@ function App() {
           time={time}
           location={location}
           energy={energy}
+          venue={venue}
           onTimeChange={setTime}
           onLocationChange={setLocation}
           onEnergyChange={setEnergy}
+          onVenueChange={setVenue}
         />
       )}
 
