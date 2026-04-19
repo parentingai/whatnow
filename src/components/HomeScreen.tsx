@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { TimeFilter, ModeFilter, EnergyFilter, PlaceFilter } from '../data/activities';
 import { trackEmptyPoolHit } from '../lib/analytics';
+import { FeedbackModal } from './FeedbackModal';
 
 interface Props {
   onSpin: (time: TimeFilter, mode: ModeFilter, energy: EnergyFilter) => void;
@@ -20,6 +21,8 @@ interface Props {
 export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, time, mode, energy, place, onTimeChange, onModeChange, onEnergyChange, onPlaceChange }: Props) {
   const toggle = <T,>(current: T, value: T): T =>
     current === value ? (null as T) : value;
+
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   // Fire empty_pool_hit once per entry into the empty state (not on every
   // rerender). `wasEmptyRef` tracks the previous value so we only emit on the
@@ -160,6 +163,16 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
           🎡 Customize Wheel {customCount > 0 && `(${customCount} hidden)`}
         </button>
       </div>
+
+      <button
+        className="feedback-fab"
+        onClick={() => setFeedbackOpen(true)}
+        aria-label="Send feedback"
+      >
+        💬
+      </button>
+
+      {feedbackOpen && <FeedbackModal onClose={() => setFeedbackOpen(false)} />}
     </div>
   );
 }
