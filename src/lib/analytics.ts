@@ -44,12 +44,12 @@ export function trackAppOpened(): void {
 
 export function trackSpinCompleted(params: {
   time: string | null;
-  location: string | null;
+  mode: string | null;
   energy: string | null;
 }): void {
   const cleaned = {
     time: params.time ?? 'any',
-    location: params.location ?? 'any',
+    mode: params.mode ?? 'any',
     energy: params.energy ?? 'any',
   };
   debug('spin_completed', cleaned);

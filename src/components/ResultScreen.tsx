@@ -21,7 +21,7 @@ export function ResultScreen({
         <span className="result-emoji">🎯</span>
         <p className="result-text">{main.text}</p>
         <div className="result-tags">
-          <span className="tag">{main.location === 'indoor' ? '🏠' : '🌳'} {main.location}</span>
+          <span className="tag">{main.mode === 'home' ? '🏠' : main.mode === 'out' ? '🌳' : '🚗'} {main.mode === 'home' ? 'home' : main.mode === 'out' ? 'outside' : 'on the go'}</span>
           <span className="tag">⏱ {main.time}</span>
           <span className="tag">{main.energy === 'chill' ? '😌' : '🏃'} {main.energy}</span>
         </div>

@@ -1,23 +1,23 @@
 import { useEffect, useRef } from 'react';
-import type { TimeFilter, LocationFilter, EnergyFilter, VenueFilter } from '../data/activities';
+import type { TimeFilter, ModeFilter, EnergyFilter, PlaceFilter } from '../data/activities';
 import { trackEmptyPoolHit } from '../lib/analytics';
 
 interface Props {
-  onSpin: (time: TimeFilter, location: LocationFilter, energy: EnergyFilter) => void;
+  onSpin: (time: TimeFilter, mode: ModeFilter, energy: EnergyFilter) => void;
   onCustomize: () => void;
   customCount: number;
   spinPoolEmpty: boolean;
   time: TimeFilter;
-  location: LocationFilter;
+  mode: ModeFilter;
   energy: EnergyFilter;
-  venue: VenueFilter;
+  place: PlaceFilter;
   onTimeChange: (v: TimeFilter) => void;
-  onLocationChange: (v: LocationFilter) => void;
+  onModeChange: (v: ModeFilter) => void;
   onEnergyChange: (v: EnergyFilter) => void;
-  onVenueChange: (v: VenueFilter) => void;
+  onPlaceChange: (v: PlaceFilter) => void;
 }
 
-export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, time, location, energy, venue, onTimeChange, onLocationChange, onEnergyChange, onVenueChange }: Props) {
+export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, time, mode, energy, place, onTimeChange, onModeChange, onEnergyChange, onPlaceChange }: Props) {
   const toggle = <T,>(current: T, value: T): T =>
     current === value ? (null as T) : value;
 
@@ -40,18 +40,15 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
 
         <button
           className="main-button"
-          onClick={() => onSpin(time, location, energy)}
+          onClick={() => onSpin(time, mode, energy)}
           disabled={spinPoolEmpty}
         >
           <span className="main-button-emoji">🎲</span>
           <span className="main-button-text">What should we do now?</span>
         </button>
-        <div className="no-results" aria-hidden={!spinPoolEmpty} data-empty={spinPoolEmpty}>
-          <p>Nothing in this mix. Adjust filters below, or:</p>
-          <button className="no-results-action" onClick={onCustomize} tabIndex={spinPoolEmpty ? 0 : -1}>
-            🎡 Open Customize
-          </button>
-        </div>
+        <p className="no-results" aria-hidden={!spinPoolEmpty} data-empty={spinPoolEmpty}>
+          Nothing in this mix — adjust filters below
+        </p>
       </div>
 
       <div className="filters">
@@ -77,32 +74,68 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
           <span className="filter-label">📍 Where</span>
           <div className="filter-options">
             <button
-              className={`filter-btn ${location === 'indoor' ? 'active' : ''}`}
-              onClick={() => onLocationChange(toggle(location, 'indoor'))}
-            >🏠 Indoor</button>
+              className={`filter-btn ${mode === 'home' ? 'active' : ''}`}
+              onClick={() => onModeChange(toggle(mode, 'home'))}
+            >🏠 At home</button>
             <button
-              className={`filter-btn ${location === 'outdoor' ? 'active' : ''}`}
-              onClick={() => onLocationChange(toggle(location, 'outdoor'))}
-            >🌳 Outdoor</button>
+              className={`filter-btn ${mode === 'out' ? 'active' : ''}`}
+              onClick={() => onModeChange(toggle(mode, 'out'))}
+            >🌳 Out & about</button>
+            <button
+              className={`filter-btn ${mode === 'onthego' ? 'active' : ''}`}
+              onClick={() => onModeChange(toggle(mode, 'onthego'))}
+            >🚗 On the go</button>
           </div>
         </div>
 
-        {location === 'outdoor' && (
+        {mode === 'home' && (
           <div className="filter-group">
             <span className="filter-label">🏡 Where exactly?</span>
             <div className="filter-options">
               <button
-                className={`filter-btn ${venue === 'backyard' ? 'active' : ''}`}
-                onClick={() => onVenueChange(toggle(venue, 'backyard'))}
-              >🏡 Backyard</button>
+                className={`filter-btn ${place === 'indoor' ? 'active' : ''}`}
+                onClick={() => onPlaceChange(toggle(place, 'indoor'))}
+              >🛋 Indoor</button>
               <button
-                className={`filter-btn ${venue === 'park' ? 'active' : ''}`}
-                onClick={() => onVenueChange(toggle(venue, 'park'))}
+                className={`filter-btn ${place === 'backyard' ? 'active' : ''}`}
+                onClick={() => onPlaceChange(toggle(place, 'backyard'))}
+              >🏡 Backyard</button>
+            </div>
+          </div>
+        )}
+
+        {mode === 'out' && (
+          <div className="filter-group">
+            <span className="filter-label">🏞 Where exactly?</span>
+            <div className="filter-options">
+              <button
+                className={`filter-btn ${place === 'park' ? 'active' : ''}`}
+                onClick={() => onPlaceChange(toggle(place, 'park'))}
               >🛝 Park</button>
               <button
-                className={`filter-btn ${venue === 'neighborhood' ? 'active' : ''}`}
-                onClick={() => onVenueChange(toggle(venue, 'neighborhood'))}
+                className={`filter-btn ${place === 'neighborhood' ? 'active' : ''}`}
+                onClick={() => onPlaceChange(toggle(place, 'neighborhood'))}
               >🚶 Neighborhood</button>
+            </div>
+          </div>
+        )}
+
+        {mode === 'onthego' && (
+          <div className="filter-group">
+            <span className="filter-label">🚦 Where exactly?</span>
+            <div className="filter-options">
+              <button
+                className={`filter-btn ${place === 'dining' ? 'active' : ''}`}
+                onClick={() => onPlaceChange(toggle(place, 'dining'))}
+              >🍽️ Dining</button>
+              <button
+                className={`filter-btn ${place === 'transit' ? 'active' : ''}`}
+                onClick={() => onPlaceChange(toggle(place, 'transit'))}
+              >🚗 Transit</button>
+              <button
+                className={`filter-btn ${place === 'shopping' ? 'active' : ''}`}
+                onClick={() => onPlaceChange(toggle(place, 'shopping'))}
+              >🛒 Shopping</button>
             </div>
           </div>
         )}

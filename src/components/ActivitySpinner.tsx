@@ -176,7 +176,7 @@ export function ActivitySpinner({ activities, onBack, onNewWheel, onLand }: Prop
             <span className="result-emoji">{winner.emoji}</span>
             <p className="result-text">{winner.text}</p>
             <div className="result-tags">
-              <span className="tag">{winner.location === 'indoor' ? '🏠' : '🌳'} {winner.location}</span>
+              <span className="tag">{winner.mode === 'home' ? '🏠' : winner.mode === 'out' ? '🌳' : '🚗'} {winner.mode === 'home' ? 'home' : winner.mode === 'out' ? 'outside' : 'on the go'}</span>
               <span className="tag">⏱ {winner.time}</span>
               <span className="tag">{winner.energy === 'chill' ? '😌' : '🏃'} {winner.energy}</span>
             </div>

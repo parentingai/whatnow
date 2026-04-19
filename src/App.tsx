@@ -4,7 +4,7 @@ import { ActivitySpinner } from './components/ActivitySpinner';
 import { CustomizeScreen } from './components/CustomizeScreen';
 import { useExcluded } from './hooks/useCustomActivities';
 import { getFilteredActivities } from './data/activities';
-import type { Activity, TimeFilter, LocationFilter, EnergyFilter, VenueFilter } from './data/activities';
+import type { Activity, TimeFilter, ModeFilter, EnergyFilter, PlaceFilter } from './data/activities';
 import {
   initAnalytics,
   trackAppOpened,
@@ -23,9 +23,9 @@ function App() {
   const [pool, setPool] = useState<Activity[]>([]);
   const [spinKey, setSpinKey] = useState(0);
   const [time, setTime] = useState<TimeFilter>(null);
-  const [location, setLocation] = useState<LocationFilter>(null);
+  const [mode, setMode] = useState<ModeFilter>(null);
   const [energy, setEnergy] = useState<EnergyFilter>(null);
-  const [venue, setVenue] = useState<VenueFilter>(null);
+  const [place, setPlace] = useState<PlaceFilter>(null);
   const { excluded, toggle, selectAll, deselectAll, isExcluded } = useExcluded();
   // Ref — doesn't trigger re-renders and doesn't need to survive app relaunch.
   const recentRef = useRef<number[]>([]);
@@ -33,20 +33,23 @@ function App() {
   // the event without re-reading state (which may have changed by then).
   const spinFiltersRef = useRef<{
     time: TimeFilter;
-    location: LocationFilter;
+    mode: ModeFilter;
     energy: EnergyFilter;
-  }>({ time: null, location: null, energy: null });
+  }>({ time: null, mode: null, energy: null });
 
   useEffect(() => {
     void initAnalytics();
     trackAppOpened();
   }, []);
 
+  // Clear the sub-bucket (place) whenever the top-level mode changes, since
+  // the available places differ per mode (home → indoor/backyard,
+  // out → park/neighborhood, onthego → dining/transit/shopping).
   useEffect(() => {
-    if (location !== 'outdoor') setVenue(null);
-  }, [location]);
+    setPlace(null);
+  }, [mode]);
 
-  const filteredAll = getFilteredActivities(time, location, energy, venue);
+  const filteredAll = getFilteredActivities(time, mode, energy, place);
   const filteredHidden = filteredAll.filter((a) => excluded.has(a.id)).length;
   const spinPoolSize = filteredAll.length - filteredHidden;
 
@@ -58,23 +61,23 @@ function App() {
   // on-wheel count visibly diverge, which confuses users more than occasional
   // repeats help.
   const buildPool = useCallback(
-    (t: TimeFilter, l: LocationFilter, e: EnergyFilter): Activity[] => {
-      const base = getFilteredActivities(t, l, e, venue).filter((a) => !excluded.has(a.id));
+    (t: TimeFilter, m: ModeFilter, e: EnergyFilter): Activity[] => {
+      const base = getFilteredActivities(t, m, e, place).filter((a) => !excluded.has(a.id));
       if (base.length <= 8) return base;
       const withoutRecent = base.filter((a) => !recentRef.current.includes(a.id));
       return withoutRecent.length >= 2 ? withoutRecent : base;
     },
-    [excluded, venue]
+    [excluded, place]
   );
 
   const startSpin = useCallback(
-    (t: TimeFilter, l: LocationFilter, e: EnergyFilter) => {
+    (t: TimeFilter, m: ModeFilter, e: EnergyFilter) => {
       setTime(t);
-      setLocation(l);
+      setMode(m);
       setEnergy(e);
-      const next = buildPool(t, l, e);
+      const next = buildPool(t, m, e);
       if (next.length === 0) return;
-      spinFiltersRef.current = { time: t, location: l, energy: e };
+      spinFiltersRef.current = { time: t, mode: m, energy: e };
       setPool(next);
       setSpinKey((k) => k + 1);
       setScreen('spin');
@@ -85,11 +88,11 @@ function App() {
   // "New wheel": resample the pool from the same filters and remount the
   // spinner so it picks a fresh random set of segments.
   const onNewWheel = useCallback(() => {
-    const next = buildPool(time, location, energy);
+    const next = buildPool(time, mode, energy);
     if (next.length === 0) return;
     setPool(next);
     setSpinKey((k) => k + 1);
-  }, [buildPool, time, location, energy]);
+  }, [buildPool, time, mode, energy]);
 
   // Called by the spinner whenever it lands on a winner.
   const onLand = useCallback((id: number) => {
@@ -112,13 +115,13 @@ function App() {
           customCount={filteredHidden}
           spinPoolEmpty={spinPoolSize === 0}
           time={time}
-          location={location}
+          mode={mode}
           energy={energy}
-          venue={venue}
+          place={place}
           onTimeChange={setTime}
-          onLocationChange={setLocation}
+          onModeChange={setMode}
           onEnergyChange={setEnergy}
-          onVenueChange={setVenue}
+          onPlaceChange={setPlace}
         />
       )}
 
@@ -140,13 +143,13 @@ function App() {
           deselectAll={deselectAll}
           onBack={() => setScreen('home')}
           time={time}
-          location={location}
+          mode={mode}
           energy={energy}
-          venue={venue}
+          place={place}
           onTimeChange={setTime}
-          onLocationChange={setLocation}
+          onModeChange={setMode}
           onEnergyChange={setEnergy}
-          onVenueChange={setVenue}
+          onPlaceChange={setPlace}
         />
       )}
     </div>

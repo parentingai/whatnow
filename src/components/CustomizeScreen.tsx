@@ -1,5 +1,5 @@
 import { activities } from '../data/activities';
-import type { TimeFilter, LocationFilter, EnergyFilter, VenueFilter } from '../data/activities';
+import type { TimeFilter, ModeFilter, EnergyFilter, PlaceFilter } from '../data/activities';
 
 interface Props {
   isExcluded: (id: number) => boolean;
@@ -8,27 +8,26 @@ interface Props {
   deselectAll: (ids: number[]) => void;
   onBack: () => void;
   time: TimeFilter;
-  location: LocationFilter;
+  mode: ModeFilter;
   energy: EnergyFilter;
-  venue: VenueFilter;
+  place: PlaceFilter;
   onTimeChange: (v: TimeFilter) => void;
-  onLocationChange: (v: LocationFilter) => void;
+  onModeChange: (v: ModeFilter) => void;
   onEnergyChange: (v: EnergyFilter) => void;
-  onVenueChange: (v: VenueFilter) => void;
+  onPlaceChange: (v: PlaceFilter) => void;
 }
 
 const MIN_WHEEL = 2;
 
-export function CustomizeScreen({ isExcluded, toggle, selectAll, deselectAll, onBack, time, location, energy, venue, onTimeChange, onLocationChange, onEnergyChange, onVenueChange }: Props) {
+export function CustomizeScreen({ isExcluded, toggle, selectAll, deselectAll, onBack, time, mode, energy, place, onTimeChange, onModeChange, onEnergyChange, onPlaceChange }: Props) {
   const toggleFilter = <T,>(current: T, value: T): T =>
     current === value ? (null as T) : value;
 
   const filtered = activities.filter((a) => {
     if (time && a.time !== time) return false;
-    if (location && a.location !== location) return false;
+    if (mode && a.mode !== mode) return false;
     if (energy && a.energy !== energy) return false;
-    // 'anywhere' activities show up regardless of the specific venue picked.
-    if (venue && a.venue !== venue && a.venue !== 'anywhere') return false;
+    if (place && a.place !== place) return false;
     return true;
   });
 
@@ -61,18 +60,39 @@ export function CustomizeScreen({ isExcluded, toggle, selectAll, deselectAll, on
         <div className="filter-group">
           <span className="filter-label">📍 Where</span>
           <div className="filter-options">
-            <button className={`filter-btn ${location === 'indoor' ? 'active' : ''}`} onClick={() => onLocationChange(toggleFilter(location, 'indoor'))}>🏠 Indoor</button>
-            <button className={`filter-btn ${location === 'outdoor' ? 'active' : ''}`} onClick={() => onLocationChange(toggleFilter(location, 'outdoor'))}>🌳 Outdoor</button>
+            <button className={`filter-btn ${mode === 'home' ? 'active' : ''}`} onClick={() => onModeChange(toggleFilter(mode, 'home'))}>🏠 At home</button>
+            <button className={`filter-btn ${mode === 'out' ? 'active' : ''}`} onClick={() => onModeChange(toggleFilter(mode, 'out'))}>🌳 Out & about</button>
+            <button className={`filter-btn ${mode === 'onthego' ? 'active' : ''}`} onClick={() => onModeChange(toggleFilter(mode, 'onthego'))}>🚗 On the go</button>
           </div>
         </div>
 
-        {location === 'outdoor' && (
+        {mode === 'home' && (
           <div className="filter-group">
             <span className="filter-label">🏡 Where exactly?</span>
             <div className="filter-options">
-              <button className={`filter-btn ${venue === 'backyard' ? 'active' : ''}`} onClick={() => onVenueChange(toggleFilter(venue, 'backyard'))}>🏡 Backyard</button>
-              <button className={`filter-btn ${venue === 'park' ? 'active' : ''}`} onClick={() => onVenueChange(toggleFilter(venue, 'park'))}>🛝 Park</button>
-              <button className={`filter-btn ${venue === 'neighborhood' ? 'active' : ''}`} onClick={() => onVenueChange(toggleFilter(venue, 'neighborhood'))}>🚶 Neighborhood</button>
+              <button className={`filter-btn ${place === 'indoor' ? 'active' : ''}`} onClick={() => onPlaceChange(toggleFilter(place, 'indoor'))}>🛋 Indoor</button>
+              <button className={`filter-btn ${place === 'backyard' ? 'active' : ''}`} onClick={() => onPlaceChange(toggleFilter(place, 'backyard'))}>🏡 Backyard</button>
+            </div>
+          </div>
+        )}
+
+        {mode === 'out' && (
+          <div className="filter-group">
+            <span className="filter-label">🏞 Where exactly?</span>
+            <div className="filter-options">
+              <button className={`filter-btn ${place === 'park' ? 'active' : ''}`} onClick={() => onPlaceChange(toggleFilter(place, 'park'))}>🛝 Park</button>
+              <button className={`filter-btn ${place === 'neighborhood' ? 'active' : ''}`} onClick={() => onPlaceChange(toggleFilter(place, 'neighborhood'))}>🚶 Neighborhood</button>
+            </div>
+          </div>
+        )}
+
+        {mode === 'onthego' && (
+          <div className="filter-group">
+            <span className="filter-label">🚦 Where exactly?</span>
+            <div className="filter-options">
+              <button className={`filter-btn ${place === 'dining' ? 'active' : ''}`} onClick={() => onPlaceChange(toggleFilter(place, 'dining'))}>🍽️ Dining</button>
+              <button className={`filter-btn ${place === 'transit' ? 'active' : ''}`} onClick={() => onPlaceChange(toggleFilter(place, 'transit'))}>🚗 Transit</button>
+              <button className={`filter-btn ${place === 'shopping' ? 'active' : ''}`} onClick={() => onPlaceChange(toggleFilter(place, 'shopping'))}>🛒 Shopping</button>
             </div>
           </div>
         )}

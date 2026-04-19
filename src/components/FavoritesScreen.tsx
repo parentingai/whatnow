@@ -26,7 +26,7 @@ export function FavoritesScreen({ favorites, toggleFavorite, onBack }: Props) {
             <div key={activity.id} className="favorite-card">
               <p className="favorite-text">{activity.text}</p>
               <div className="favorite-meta">
-                <span className="tag">{activity.location === 'indoor' ? '🏠' : '🌳'}</span>
+                <span className="tag">{activity.mode === 'home' ? '🏠' : activity.mode === 'out' ? '🌳' : '🚗'}</span>
                 <span className="tag">⏱ {activity.time}</span>
                 <span className="tag">{activity.energy === 'chill' ? '😌' : '🏃'}</span>
                 <button
