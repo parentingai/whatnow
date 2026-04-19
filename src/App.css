@@ -622,10 +622,11 @@ body {
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 20px;
+  padding: calc(env(safe-area-inset-top) + 40px) 20px 20px;
   z-index: 100;
+  overflow-y: auto;
   animation: fadeIn 0.15s ease-out;
 }
 @keyframes fadeIn {
@@ -662,7 +663,7 @@ body {
 
 .feedback-textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 88px;
   padding: 12px;
   border: 2px solid #e2e2e2;
   border-radius: 12px;
