@@ -39,7 +39,7 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
     <div className="home-screen">
       <div className="hero-section">
         <h1 className="app-title">WhatNow?</h1>
-        <p className="app-subtitle">Never run out of things to do with your kid</p>
+        <p className="app-subtitle">Activity ideas for families</p>
 
         <button
           className="main-button"

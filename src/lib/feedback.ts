@@ -18,7 +18,7 @@ const ENDPOINT = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/dat
 // Bump these with each release — they travel with the feedback so we know
 // which version a user was on when they wrote in.
 const APP_VERSION = '1.0.0';
-const BUILD_NUMBER = '5';
+const BUILD_NUMBER = '6';
 
 export async function submitFeedback(text: string): Promise<void> {
   const trimmed = text.trim();
