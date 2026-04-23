@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { submitFeedback } from '../lib/feedback';
+import { FEEDBACK_MIN_LENGTH, submitFeedback } from '../lib/feedback';
 
 interface Props {
   onClose: () => void;
@@ -15,7 +15,7 @@ export function FeedbackModal({ onClose }: Props) {
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState<string | null>(null);
 
-  const canSend = text.trim().length > 0 && status !== 'sending';
+  const canSend = text.trim().length >= FEEDBACK_MIN_LENGTH && status !== 'sending';
 
   const handleSend = async () => {
     if (!canSend) return;

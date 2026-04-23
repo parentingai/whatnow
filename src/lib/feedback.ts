@@ -20,9 +20,13 @@ const ENDPOINT = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/dat
 const APP_VERSION = '1.0.0';
 const BUILD_NUMBER = '6';
 
+export const FEEDBACK_MIN_LENGTH = 5;
+
 export async function submitFeedback(text: string): Promise<void> {
   const trimmed = text.trim();
-  if (!trimmed) throw new Error('Feedback is empty');
+  if (trimmed.length < FEEDBACK_MIN_LENGTH) {
+    throw new Error(`Feedback is too short (min ${FEEDBACK_MIN_LENGTH} characters)`);
+  }
   if (trimmed.length > 1900) throw new Error('Feedback is too long');
 
   const body = {
