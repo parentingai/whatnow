@@ -16,9 +16,14 @@ interface Props {
   onModeChange: (v: ModeFilter) => void;
   onEnergyChange: (v: EnergyFilter) => void;
   onPlaceChange: (v: PlaceFilter) => void;
+  isOptionEmpty: (dim: 'time' | 'mode' | 'energy' | 'place', value: string) => boolean;
 }
 
-export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, time, mode, energy, place, onTimeChange, onModeChange, onEnergyChange, onPlaceChange }: Props) {
+export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, time, mode, energy, place, onTimeChange, onModeChange, onEnergyChange, onPlaceChange, isOptionEmpty }: Props) {
+  // A filter button is disabled when selecting it would empty the pool. Active
+  // buttons stay enabled: clicking them toggles off, which only widens the pool.
+  const isDead = (dim: 'time' | 'mode' | 'energy' | 'place', value: string, active: boolean) =>
+    !active && isOptionEmpty(dim, value);
   const toggle = <T,>(current: T, value: T): T =>
     current === value ? (null as T) : value;
 
@@ -61,14 +66,17 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
             <button
               className={`filter-btn ${time === '10min' ? 'active' : ''}`}
               onClick={() => onTimeChange(toggle(time, '10min'))}
+              disabled={isDead('time', '10min', time === '10min')}
             >10 min</button>
             <button
               className={`filter-btn ${time === '30min' ? 'active' : ''}`}
               onClick={() => onTimeChange(toggle(time, '30min'))}
+              disabled={isDead('time', '30min', time === '30min')}
             >30 min</button>
             <button
               className={`filter-btn ${time === 'longer' ? 'active' : ''}`}
               onClick={() => onTimeChange(toggle(time, 'longer'))}
+              disabled={isDead('time', 'longer', time === 'longer')}
             >1 hr+</button>
           </div>
         </div>
@@ -79,14 +87,17 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
             <button
               className={`filter-btn ${mode === 'home' ? 'active' : ''}`}
               onClick={() => onModeChange(toggle(mode, 'home'))}
+              disabled={isDead('mode', 'home', mode === 'home')}
             >🏠 At home</button>
             <button
               className={`filter-btn ${mode === 'out' ? 'active' : ''}`}
               onClick={() => onModeChange(toggle(mode, 'out'))}
+              disabled={isDead('mode', 'out', mode === 'out')}
             >🌳 Out & about</button>
             <button
               className={`filter-btn ${mode === 'onthego' ? 'active' : ''}`}
               onClick={() => onModeChange(toggle(mode, 'onthego'))}
+              disabled={isDead('mode', 'onthego', mode === 'onthego')}
             >🚗 On the go</button>
           </div>
         </div>
@@ -98,10 +109,12 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
               <button
                 className={`filter-btn ${place === 'indoor' ? 'active' : ''}`}
                 onClick={() => onPlaceChange(toggle(place, 'indoor'))}
+                disabled={isDead('place', 'indoor', place === 'indoor')}
               >🛋 Indoor</button>
               <button
                 className={`filter-btn ${place === 'backyard' ? 'active' : ''}`}
                 onClick={() => onPlaceChange(toggle(place, 'backyard'))}
+                disabled={isDead('place', 'backyard', place === 'backyard')}
               >🏡 Backyard</button>
             </div>
           </div>
@@ -114,10 +127,12 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
               <button
                 className={`filter-btn ${place === 'park' ? 'active' : ''}`}
                 onClick={() => onPlaceChange(toggle(place, 'park'))}
+                disabled={isDead('place', 'park', place === 'park')}
               >🛝 Park</button>
               <button
                 className={`filter-btn ${place === 'neighborhood' ? 'active' : ''}`}
                 onClick={() => onPlaceChange(toggle(place, 'neighborhood'))}
+                disabled={isDead('place', 'neighborhood', place === 'neighborhood')}
               >🚶 Neighborhood</button>
             </div>
           </div>
@@ -130,14 +145,17 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
               <button
                 className={`filter-btn ${place === 'dining' ? 'active' : ''}`}
                 onClick={() => onPlaceChange(toggle(place, 'dining'))}
+                disabled={isDead('place', 'dining', place === 'dining')}
               >🍽️ Dining</button>
               <button
                 className={`filter-btn ${place === 'transit' ? 'active' : ''}`}
                 onClick={() => onPlaceChange(toggle(place, 'transit'))}
+                disabled={isDead('place', 'transit', place === 'transit')}
               >🚗 Transit</button>
               <button
                 className={`filter-btn ${place === 'shopping' ? 'active' : ''}`}
                 onClick={() => onPlaceChange(toggle(place, 'shopping'))}
+                disabled={isDead('place', 'shopping', place === 'shopping')}
               >🛒 Shopping</button>
             </div>
           </div>
@@ -149,10 +167,12 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
             <button
               className={`filter-btn ${energy === 'chill' ? 'active' : ''}`}
               onClick={() => onEnergyChange(toggle(energy, 'chill'))}
+              disabled={isDead('energy', 'chill', energy === 'chill')}
             >😌 Chill</button>
             <button
               className={`filter-btn ${energy === 'active' ? 'active' : ''}`}
               onClick={() => onEnergyChange(toggle(energy, 'active'))}
+              disabled={isDead('energy', 'active', energy === 'active')}
             >🏃 Active</button>
           </div>
         </div>

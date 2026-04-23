@@ -186,6 +186,15 @@ body {
   transform: scale(0.95);
 }
 
+.filter-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.filter-btn:disabled:active {
+  transform: none;
+}
+
 /* ===== Bottom Actions ===== */
 .bottom-actions {
   display: flex;

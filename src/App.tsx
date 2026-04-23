@@ -53,6 +53,29 @@ function App() {
   const filteredHidden = filteredAll.filter((a) => excluded.has(a.id)).length;
   const spinPoolSize = filteredAll.length - filteredHidden;
 
+  // Returns true if selecting `value` for dimension `dim` — with other filters
+  // held constant — would produce an empty pool. Used to gray out filter
+  // buttons that lead to dead ends. Active buttons pass their current value,
+  // which always remains enabled (toggling off only widens the pool).
+  const isOptionEmpty = useCallback(
+    (dim: 'time' | 'mode' | 'energy' | 'place', value: string): boolean => {
+      let nextTime = time;
+      let nextMode = mode;
+      let nextEnergy = energy;
+      let nextPlace = place;
+      if (dim === 'time') nextTime = value as TimeFilter;
+      else if (dim === 'mode') {
+        nextMode = value as ModeFilter;
+        // Mode change clears place (different places per mode).
+        nextPlace = null;
+      } else if (dim === 'energy') nextEnergy = value as EnergyFilter;
+      else nextPlace = value as PlaceFilter;
+      const pool = getFilteredActivities(nextTime, nextMode, nextEnergy, nextPlace);
+      return pool.every((a) => excluded.has(a.id));
+    },
+    [time, mode, energy, place, excluded]
+  );
+
   // Build the candidate pool for a fresh wheel. Drops recently-seen winners
   // when the remaining set is large enough; otherwise falls back to the full
   // pool so we never starve the wheel below its minimum. When the base pool
@@ -122,6 +145,7 @@ function App() {
           onModeChange={setMode}
           onEnergyChange={setEnergy}
           onPlaceChange={setPlace}
+          isOptionEmpty={isOptionEmpty}
         />
       )}
 
