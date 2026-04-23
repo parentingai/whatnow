@@ -30,10 +30,10 @@ export function HomeScreen({ onSpin, onCustomize, customCount, spinPoolEmpty, ti
   const wasEmptyRef = useRef(false);
   useEffect(() => {
     if (spinPoolEmpty && !wasEmptyRef.current) {
-      trackEmptyPoolHit();
+      trackEmptyPoolHit({ time, mode, energy, place });
     }
     wasEmptyRef.current = spinPoolEmpty;
-  }, [spinPoolEmpty]);
+  }, [spinPoolEmpty, time, mode, energy, place]);
 
   return (
     <div className="home-screen">

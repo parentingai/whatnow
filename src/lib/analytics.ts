@@ -65,8 +65,21 @@ export function trackCustomizeOpened(): void {
   void safe(() => FirebaseAnalytics.logEvent({ name: 'customize_opened' }));
 }
 
-export function trackEmptyPoolHit(): void {
-  debug('empty_pool_hit');
+export function trackEmptyPoolHit(params: {
+  time: string | null;
+  mode: string | null;
+  energy: string | null;
+  place: string | null;
+}): void {
+  const cleaned = {
+    time: params.time ?? 'any',
+    mode: params.mode ?? 'any',
+    energy: params.energy ?? 'any',
+    place: params.place ?? 'any',
+  };
+  debug('empty_pool_hit', cleaned);
   if (!isNative || isDev) return;
-  void safe(() => FirebaseAnalytics.logEvent({ name: 'empty_pool_hit' }));
+  void safe(() =>
+    FirebaseAnalytics.logEvent({ name: 'empty_pool_hit', params: cleaned })
+  );
 }
