@@ -273,6 +273,28 @@ export const activities: Activity[] = [
   { id: 211, emoji: "🏃", label: "Aisle Sprint", text: "Send the kid to grab one specific item from a nearby aisle — race the clock", category: 'onthego', time: '10min', mode: 'onthego', place: 'shopping', energy: 'active' },
   { id: 212, emoji: "🌳", label: "Block Explorer", text: "Walk slowly and notice something new on every block — a door color, a garden, a cat", category: 'outdoor', time: 'longer', mode: 'out', place: 'neighborhood', energy: 'chill' },
   { id: 213, emoji: "🙌", label: "Seat Dance", text: "Play music and dance with just your arms and shoulders — car-seat disco", category: 'onthego', time: '30min', mode: 'onthego', place: 'transit', energy: 'active' },
+
+  // Seeding sparse combos (transit + active, shopping + chill, dining + chill longer, etc.)
+  { id: 214, emoji: "🥁", label: "Air Drums", text: "Drum the beat on your knees to 3 songs in a row", category: 'onthego', time: '10min', mode: 'onthego', place: 'transit', energy: 'active' },
+  { id: 215, emoji: "💪", label: "Arm Wrestle", text: "Friendly arm wrestles across the seat — best of 3", category: 'onthego', time: '10min', mode: 'onthego', place: 'transit', energy: 'active' },
+  { id: 216, emoji: "😜", label: "Silly Face", text: "Make the silliest face — whoever laughs first loses", category: 'onthego', time: '10min', mode: 'onthego', place: 'transit', energy: 'active' },
+  { id: 217, emoji: "🧘", label: "Car Yoga", text: "Arms up, side, out — hold each stretch for 10 seconds", category: 'onthego', time: '30min', mode: 'onthego', place: 'transit', energy: 'active' },
+  { id: 218, emoji: "👍", label: "Thumb War", text: "Best of 5 thumb wars — crown a champion", category: 'onthego', time: '10min', mode: 'onthego', place: 'transit', energy: 'active' },
+  { id: 219, emoji: "🍽️", label: "Build a Meal", text: "Plan tomorrow's dinner using things you spot on the shelves", category: 'onthego', time: 'longer', mode: 'onthego', place: 'shopping', energy: 'chill' },
+  { id: 220, emoji: "📖", label: "Cart Story", text: "One person names a product you pass, the other weaves it into an ongoing story", category: 'onthego', time: 'longer', mode: 'onthego', place: 'shopping', energy: 'chill' },
+  { id: 221, emoji: "🛒", label: "Cart Navigator", text: "Kid drives the empty cart and finds 3 specific items", category: 'onthego', time: '30min', mode: 'onthego', place: 'shopping', energy: 'active' },
+  { id: 222, emoji: "🥦", label: "Food Group Race", text: "Find one fruit, one veggie, one grain — fastest wins", category: 'onthego', time: '30min', mode: 'onthego', place: 'shopping', energy: 'active' },
+  { id: 223, emoji: "🎭", label: "Menu Poet", text: "Write a silly poem using only words from the menu", category: 'onthego', time: 'longer', mode: 'onthego', place: 'dining', energy: 'chill' },
+  { id: 224, emoji: "⭐", label: "Kid's Review", text: "Rate every menu item out of 10 based on the name alone", category: 'onthego', time: 'longer', mode: 'onthego', place: 'dining', energy: 'chill' },
+  { id: 225, emoji: "🌳", label: "Favorite Tree", text: "Pick one tree on the block and describe it in 10 ways", category: 'outdoor', time: 'longer', mode: 'out', place: 'neighborhood', energy: 'chill' },
+  { id: 226, emoji: "➡️", label: "Chalk Trail", text: "Draw a long chalk arrow trail — see if anyone follows it", category: 'outdoor', time: 'longer', mode: 'out', place: 'neighborhood', energy: 'chill' },
+  { id: 227, emoji: "🐾", label: "Pet Census", text: "Count every pet you see in 10 minutes", category: 'outdoor', time: '10min', mode: 'out', place: 'neighborhood', energy: 'chill' },
+  { id: 228, emoji: "🔊", label: "Echo Hunt", text: "Find a spot that echoes — a bridge, big wall, or parking garage", category: 'outdoor', time: '10min', mode: 'out', place: 'neighborhood', energy: 'active' },
+  { id: 229, emoji: "🤫", label: "Tiptoe Race", text: "Race to the corner, but everyone must tiptoe", category: 'outdoor', time: '10min', mode: 'out', place: 'neighborhood', energy: 'active' },
+  { id: 230, emoji: "☁️", label: "Cloud Gallery", text: "Lie in the grass and describe 5 cloud shapes", category: 'outdoor', time: 'longer', mode: 'out', place: 'park', energy: 'chill' },
+  { id: 231, emoji: "🧺", label: "Slow Picnic", text: "Blanket, long snack, book, zero rush", category: 'outdoor', time: 'longer', mode: 'out', place: 'park', energy: 'chill' },
+  { id: 232, emoji: "🏁", label: "Obstacle Tour", text: "Invent an obstacle course using the playground — time each run", category: 'outdoor', time: 'longer', mode: 'out', place: 'park', energy: 'active' },
+  { id: 233, emoji: "🌲", label: "Tree Tag", text: "Play tag with one rule: touch any tree = safe", category: 'outdoor', time: 'longer', mode: 'out', place: 'park', energy: 'active' },
 ];
 
 export type TimeFilter = '10min' | '30min' | 'longer' | null;
